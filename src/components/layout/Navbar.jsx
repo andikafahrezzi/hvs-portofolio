@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-gray-900 shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-white">Portfolio</h1>
+          <h1 className="text-2xl font-bold text-white">SanTech</h1>
           <div className="hidden md:flex space-x-8">
             {['Home', 'About', 'Portfolio', 'Contact'].map((item) => (
               <button

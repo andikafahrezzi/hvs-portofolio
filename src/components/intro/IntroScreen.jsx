@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Code2, Server, Globe, Layers } from 'lucide-react';
+import logo from '../../../src/assets/cp.jpeg';
 
 /* ─────────────────────────────────────────
    DATA
@@ -99,28 +100,22 @@ const SplashScreen = ({ onEnter }) => {
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl w-full">
 
           {/* Logo mark */}
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mb-8"
-          >
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-              style={{ background: 'rgba(109,40,217,0.15)', border: '1px solid rgba(109,40,217,0.3)' }}
-            >
-              {/* Simple "HV" monogram */}
-              <span
-                className="font-bold text-xl select-none"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  color: '#A78BFA',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                HV
-              </span>
-            </div>
+<motion.div
+  initial={{ scale: 0, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.6, ease: 'easeOut' }}
+  className="mb-8"
+>
+  <div
+    className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
+    style={{ background: 'rgba(109,40,217,0.15)', border: '1px solid rgba(109,40,217,0.3)' }}
+  >
+    <img
+      src={logo}
+      alt="Hawkins Valkyrie Logo"
+      className="w-10 h-10 object-contain"
+    />
+  </div>
 
             {/* Company name */}
             <motion.p
@@ -130,7 +125,7 @@ const SplashScreen = ({ onEnter }) => {
               className="text-xs font-semibold tracking-[0.18em] uppercase"
               style={{ color: '#6D28D9' }}
             >
-              Hawkins Valkyrie Solusi Indonesia
+              SanTech Indonesia
             </motion.p>
           </motion.div>
 

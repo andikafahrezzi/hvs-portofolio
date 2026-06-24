@@ -4,23 +4,21 @@ import {
   Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare
 } from 'lucide-react';
 
-/* ─────────────────────────────────────────
-   DATA — ganti dengan info perusahaan asli
-───────────────────────────────────────── */
+
 const CONTACT_INFO = [
   {
     icon: <Mail size={18} />,
     label: 'Email',
-    value: 'hello@hawkinsvalkyrie.id',
-    link: 'mailto:hello@hawkinsvalkyrie.id',
+    value: 'santechid13@gmail.com',
+    link: 'mailto:santechid13@gmail.com',
     accent: '#6D28D9',
     bg: 'rgba(109,40,217,0.12)',
   },
   {
     icon: <Phone size={18} />,
     label: 'WhatsApp',
-    value: '+62 813 8660 7123',
-    link: 'https://wa.me/6281386607123',
+    value: '+62 896-1939-9494',
+    link: 'https://wa.me/6289619399494',
     accent: '#0D9488',
     bg: 'rgba(13,148,136,0.12)',
   },
@@ -90,7 +88,7 @@ const Contact = () => {
     const text = encodeURIComponent(
       `Halo, saya ${form.name}\nEmail: ${form.email}\nSubjek: ${form.subject || '-'}\n\n${form.message}`
     );
-    window.open(`https://wa.me/6281386607123?text=${text}`, '_blank');
+    window.open(`https://wa.me/6289619399494?text=${text}`, '_blank');
 
     setSubmitted(true);
     setTimeout(() => {
@@ -271,7 +269,7 @@ const Contact = () => {
               <motion.a
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                href="https://wa.me/6281386607123"
+                href="https://wa.me/6289619399494"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white"
@@ -283,7 +281,7 @@ const Contact = () => {
               <motion.a
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                href="mailto:hello@hawkinsvalkyrie.id"
+                href="mailto:santechid13@gmail.com"
                 className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold"
                 style={{
                   background: 'transparent',

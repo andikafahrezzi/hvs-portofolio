@@ -7,13 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="text-center">
           <p className="text-gray-400 mb-4">
-            &copy; 2026 <span className="text-purple-400 font-bold">andikafahrezzi</span>. All rights reserved.
+            &copy; 2026 <span className="text-purple-400 font-bold">SanTech</span>. All rights reserved.
           </p>
           <div className="flex justify-center space-x-6">
             {[
               { icon: <Github className="w-5 h-5" />, link: "https://github.com/andikafahrezzi" },
-              { icon: <Linkedin className="w-5 h-5" />, link: "https://linkedin.com/in/andikafahrezzi" },
-              { icon: <Mail className="w-5 h-5" />, link: "mailto:andikafahrezi5@gmail.com" }
+              { icon: <Mail className="w-5 h-5" />, link: "mailto:santechid13@gmail.com" }
             ].map((social, index) => (
               <a
                 key={index}
