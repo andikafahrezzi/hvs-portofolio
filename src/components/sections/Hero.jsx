@@ -1,327 +1,293 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 /* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
 /* eslint-enable no-unused-vars */
 import { Mail, Github, Linkedin, Phone, Send, Code, Server, Database, Download, Briefcase, Award, FileText, Layers, MapPin, Clock } from 'lucide-react';
+import { MessageCircle, ArrowRight, Shield, Code2 } from 'lucide-react';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+};
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const ROLES = ['Full Stack Developer', 'Backend Developer', 'Network Engineer', 'Web Developer'];
-    
-    const speed = isDeleting ? 50 : 100;
-    const currentText = ROLES[roleIndex];
-    
-    const timeout = setTimeout(() => {
-      if (!isDeleting && charIndex < currentText.length) {
-        setCurrentRole(currentText.substring(0, charIndex + 1));
-        setCharIndex(prev => prev + 1);
-      } else if (isDeleting && charIndex > 0) {
-        setCurrentRole(currentText.substring(0, charIndex - 1));
-        setCharIndex(prev => prev - 1);
-      } else if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setRoleIndex((roleIndex + 1) % ROLES.length);
-      }
-    }, speed);
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, roleIndex]);
-
-  // Variants untuk animasi container
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  // Variants untuk animasi text dari kiri
-  const leftVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -100 
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // Variants untuk animasi SVG dari kanan
-  const rightVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: 100,
-      scale: 0.8
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // Variants untuk button dengan hover effect
-  const buttonVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20 
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.3
-      }
-    },
-    tap: {
-      scale: 0.95
-    }
-  };
-
   return (
-    <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 pt-16">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="grid md:grid-cols-2 gap-8 items-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          {/* Left Side - Text */}
-          <motion.div 
-            className="text-left space-y-6"
-            variants={leftVariants}
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0F] pt-16"
+    >
+      {/* Background grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
+
+      {/* Glow blobs */}
+      <div className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 right-0 w-[380px] h-[380px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)' }} />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+
+          {/* ── LEFT ── */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            className="space-y-6"
           >
-            <motion.h1 
-              className="text-5xl md:text-6xl font-bold text-white"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Hi, I'm <span className="text-purple-400">Andika Fahrezi</span>
-            </motion.h1>
-            
-            <motion.div 
-              className="h-20"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                {currentRole}
-                <span className="animate-pulse">|</span>
-              </h2>
+            {/* Eyebrow */}
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2">
+              <span
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
+                style={{
+                  background: 'rgba(139,92,246,0.1)',
+                  border: '1px solid rgba(139,92,246,0.25)',
+                  color: '#A78BFA',
+                }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"
+                />
+                IT &amp; Software Solutions
+              </span>
             </motion.div>
-            
-            <motion.p 
-              className="text-xl text-gray-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+
+            {/* Company name */}
+            <motion.p
+              variants={fadeUp}
+              className="text-xs font-semibold tracking-[0.15em] uppercase"
+              style={{ color: '#6D28D9' }}
             >
-              Mengubah Ide Menjadi Solusi Digital yang Berdampak
+              Hawkins Valkyrie Solusi Indonesia
             </motion.p>
-            
-            <motion.div 
-              className="flex space-x-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+
+            {/* Headline */}
+            <motion.h1
+              variants={fadeUp}
+              className="font-bold leading-tight"
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(34px, 4vw, 52px)',
+                letterSpacing: '-0.02em',
+              }}
             >
-              <motion.button 
+              <span className="text-[#F8F8FC]">Solusi Digital</span>
+              <br />
+              <span className="text-violet-400">Tepat Sasaran,</span>
+              <br />
+              <span className="font-normal text-slate-400">Tanpa Kompromi.</span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              variants={fadeUp}
+              className="text-base leading-relaxed max-w-md"
+              style={{ color: '#8898AA' }}
+            >
+              Kami membangun sistem, aplikasi, dan infrastruktur digital yang
+              dirancang untuk tumbuh bersama bisnis Anda — dari konsultasi
+              hingga deployment.
+            </motion.p>
+
+            {/* CTA buttons */}
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+              <motion.button
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm text-white"
+                style={{ background: '#6D28D9' }}
               >
-                Hubungi Saya
+                <MessageCircle size={16} />
+                Konsultasi Gratis
               </motion.button>
-              <motion.button 
-                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
+
+              <motion.button
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm"
+                style={{
+                  color: '#A78BFA',
+                  border: '1px solid rgba(167,139,250,0.3)',
+                  background: 'transparent',
+                }}
               >
-                Lihat Portfolio
+                Lihat Layanan Kami
+                <ArrowRight size={14} />
               </motion.button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              variants={fadeUp}
+              className="flex gap-8 pt-6"
+              style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+            >
+              {[
+                { num: '50+', label: 'Proyek Selesai' },
+                { num: '30+', label: 'Klien Aktif' },
+                { num: '5+',  label: 'Tahun Pengalaman' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div
+                    className="font-bold text-2xl text-[#F8F8FC]"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {s.num}
+                  </div>
+                  <div className="text-xs mt-1" style={{ color: '#556070' }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Image/SVG */}
-          <motion.div 
-            className="flex justify-center"
-            variants={rightVariants}
+          {/* ── RIGHT ── */}
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            className="flex justify-center items-center"
           >
-            <div className="relative w-full max-w-md">
-              <motion.svg 
-                viewBox="0 0 500 500" 
-                className="w-full h-full"
-                initial={{ rotate: -5 }}
-                whileInView={{ rotate: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 1, delay: 0.5 }}
+            <div className="relative w-[340px] h-[380px]">
+
+              {/* Back cards */}
+              <div
+                className="absolute rounded-2xl"
+                style={{
+                  width: 260, height: 180,
+                  background: '#12121C',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-44%, -46%) rotate(6deg)',
+                  opacity: 0.5,
+                  zIndex: 1,
+                }}
+              />
+              <div
+                className="absolute rounded-2xl"
+                style={{
+                  width: 260, height: 180,
+                  background: '#12121C',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-56%, -54%) rotate(-5deg)',
+                  opacity: 0.35,
+                  zIndex: 2,
+                }}
+              />
+
+              {/* Main card */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute rounded-2xl p-6"
+                style={{
+                  width: 280,
+                  background: '#12121C',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 3,
+                }}
               >
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{stopColor: '#8B5CF6', stopOpacity: 1}} />
-                    <stop offset="100%" style={{stopColor: '#3B82F6', stopOpacity: 1}} />
-                  </linearGradient>
-                </defs>
-                
-                {/* Monitor/Computer */}
-                <motion.rect 
-                  x="100" y="150" width="300" height="200" rx="10" 
-                  fill="url(#grad1)" opacity="0.2"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                />
-                <motion.rect 
-                  x="110" y="160" width="280" height="160" rx="5" 
-                  fill="#1F2937"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                />
-                
-                {/* Code Lines */}
-                <motion.line 
-                  x1="130" y1="180" x2="220" y2="180" 
-                  stroke="#8B5CF6" strokeWidth="3" strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 1, delay: 1 }}
+                {/* Icon */}
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: 'rgba(109,40,217,0.2)' }}
                 >
-                  <animate attributeName="x2" values="130;220;130" dur="2s" repeatCount="indefinite"/>
-                </motion.line>
-                <motion.line 
-                  x1="130" y1="200" x2="280" y2="200" 
-                  stroke="#3B82F6" strokeWidth="3" strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 1, delay: 1.1 }}
+                  <Code2 size={18} color="#A78BFA" />
+                </div>
+
+                <div
+                  className="font-semibold text-sm mb-1 text-[#E2E8F0]"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  <animate attributeName="x2" values="130;280;130" dur="2.5s" repeatCount="indefinite"/>
-                </motion.line>
-                <motion.line 
-                  x1="130" y1="220" x2="250" y2="220" 
-                  stroke="#8B5CF6" strokeWidth="3" strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 1, delay: 1.2 }}
+                  Custom Software Development
+                </div>
+                <div className="text-xs leading-relaxed" style={{ color: '#475569' }}>
+                  Aplikasi web &amp; mobile yang dibangun sesuai kebutuhan bisnis Anda
+                </div>
+
+                {/* Progress bar */}
+                <div
+                  className="mt-4 h-1 rounded-full overflow-hidden"
+                  style={{ background: 'rgba(255,255,255,0.05)' }}
                 >
-                  <animate attributeName="x2" values="130;250;130" dur="3s" repeatCount="indefinite"/>
-                </motion.line>
-                <motion.line 
-                  x1="130" y1="240" x2="300" y2="240" 
-                  stroke="#3B82F6" strokeWidth="3" strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 1, delay: 1.3 }}
-                >
-                  <animate attributeName="x2" values="130;300;130" dur="2.2s" repeatCount="indefinite"/>
-                </motion.line>
-                
-                {/* Monitor Stand */}
-                <motion.rect 
-                  x="220" y="350" width="60" height="40" 
-                  fill="url(#grad1)" opacity="0.3"
-                  initial={{ y: 300 }}
-                  whileInView={{ y: 350 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.4 }}
-                />
-                <motion.rect 
-                  x="180" y="390" width="140" height="10" rx="5" 
-                  fill="url(#grad1)" opacity="0.3"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.5 }}
-                />
-                
-                {/* Floating Elements */}
-                <motion.circle 
-                  cx="420" cy="100" r="15" 
-                  fill="#8B5CF6" opacity="0.6"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.6 }}
-                >
-                  <animate attributeName="cy" values="100;80;100" dur="3s" repeatCount="indefinite"/>
-                </motion.circle>
-                <motion.circle 
-                  cx="80" cy="300" r="20" 
-                  fill="#3B82F6" opacity="0.6"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.7 }}
-                >
-                  <animate attributeName="cy" values="300;320;300" dur="4s" repeatCount="indefinite"/>
-                </motion.circle>
-                <motion.rect 
-                  x="400" y="280" width="30" height="30" 
-                  fill="#8B5CF6" opacity="0.4" 
-                  transform="rotate(45 415 295)"
-                  initial={{ scale: 0, rotate: 0 }}
-                  whileInView={{ scale: 1, rotate: 45 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.8 }}
-                >
-                  <animateTransform 
-                    attributeName="transform" 
-                    type="rotate" 
-                    values="45 415 295;90 415 295;45 415 295" 
-                    dur="5s" 
-                    repeatCount="indefinite"
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '78%' }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 1.4, ease: 'easeOut', delay: 0.3 }}
+                    className="h-full rounded-full"
+                    style={{ background: 'linear-gradient(90deg, #6D28D9, #3B82F6)' }}
                   />
-                </motion.rect>
-              </motion.svg>
+                </div>
+              </motion.div>
+
+              {/* Badge — top right */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute flex items-center gap-2 px-3 py-2 rounded-full text-xs font-medium"
+                style={{
+                  top: 12, right: -16,
+                  background: '#1A1A2E',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#94A3B8',
+                  zIndex: 10,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <span className="w-2 h-2 rounded-full bg-green-400" />
+                System Online
+              </motion.div>
+
+              {/* Badge — bottom left */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute flex items-center gap-2 px-3 py-2 rounded-full text-xs font-medium"
+                style={{
+                  bottom: 28, left: -16,
+                  background: '#1A1A2E',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#60A5FA',
+                  zIndex: 10,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <Shield size={13} color="#60A5FA" />
+                Secure &amp; Scalable
+              </motion.div>
             </div>
           </motion.div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
