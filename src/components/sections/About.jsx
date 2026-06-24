@@ -133,7 +133,7 @@ const About = () => {
             className="text-base max-w-xl mx-auto leading-relaxed"
             style={{ color: '#8898AA' }}
           >
-            Hawkins Valkyrie Solusi Indonesia adalah perusahaan teknologi yang
+            SanTech Indonesia adalah perusahaan teknologi yang
             berfokus pada pengembangan perangkat lunak dan infrastruktur digital
             untuk bisnis yang ingin bertumbuh.
           </motion.p>

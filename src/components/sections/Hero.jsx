@@ -79,7 +79,7 @@ const Hero = () => {
               className="text-xs font-semibold tracking-[0.15em] uppercase"
               style={{ color: '#6D28D9' }}
             >
-              Hawkins Valkyrie Solusi Indonesia
+              SanTech Indonesia
             </motion.p>
 
             {/* Headline */}

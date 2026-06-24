@@ -112,7 +112,7 @@ const SplashScreen = ({ onEnter }) => {
   >
     <img
       src={logo}
-      alt="Hawkins Valkyrie Logo"
+      alt="SanTech Logo"
       className="w-10 h-10 object-contain"
     />
   </div>
@@ -239,7 +239,7 @@ const SplashScreen = ({ onEnter }) => {
           className="absolute bottom-6 text-xs font-mono tracking-widest uppercase"
           style={{ color: '#64748B' }}
         >
-          hawkinsvalkyrie.id
+          SanTech Indonesia
         </motion.p>
       </motion.div>
     </AnimatePresence>
