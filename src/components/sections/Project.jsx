@@ -4,7 +4,8 @@ import {
   ExternalLink, X, Monitor, ShoppingCart,
   BookOpen, BarChart2, Briefcase, ArrowRight
 } from 'lucide-react';
-
+import elearningImage from '../../../src/assets/e-learning.png';
+import ppdbImage from '../../assets/tlfajar.png';
 /* ─────────────────────────────────────────
    DATA
 ───────────────────────────────────────── */
@@ -18,7 +19,7 @@ const projects = [
     icon: <BookOpen size={20} />,
     accent: '#6D28D9',
     accentBg: 'rgba(109,40,217,0.12)',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop',
+    image: ppdbImage,
   },
   {
     id: 2,
@@ -29,7 +30,7 @@ const projects = [
     icon: <Monitor size={20} />,
     accent: '#2563EB',
     accentBg: 'rgba(37,99,235,0.12)',
-    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop',
+    image: elearningImage,
   },
   {
     id: 3,
