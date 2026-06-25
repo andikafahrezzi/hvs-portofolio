@@ -25,7 +25,7 @@ const CONTACT_INFO = [
   {
     icon: <MapPin size={18} />,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
+    value: 'Tangerang Selatan, Indonesia',
     link: null,
     accent: '#2563EB',
     bg: 'rgba(37,99,235,0.12)',
